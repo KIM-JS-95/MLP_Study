@@ -8,10 +8,6 @@ class Pay123 {
 
 public class PayCalc {
 
-    /**
-     * 시작 메소드
-     * @param args
-     */
     public static void main(String[] args) {
         //┌ Class  ┌ 메모리 할당(heap memory)
         //│        │
