@@ -58,9 +58,10 @@ class Score123 {
     }
 
     public void printScore() {
-        System.out.println("================");
-        System.out.println("======성적표=====");
-        System.out.println("================");
+        System.out.println("================================");
+        System.out.println("================성적표===========");
+        System.out.println("================================");
+        System.out.println("이름: " + name);
         System.out.println("국어점수: " + kuk);
         System.out.println("영어점수: " + eng);
         System.out.println("수학점수: " + math);
@@ -71,6 +72,42 @@ class Score123 {
 
 
 class Grade extends Score123 {
+
+    public Grade(String name, int kuk, int eng, int math) {
+        super(name, kuk, eng, math);
+    }
+
+    public Grade() {
+    }
+
+    @Override
+    public void printScore() {
+        super.printScore();
+        System.out.println("평 점: "+ calcGrade());
+    }
+
+    public String calcGrade() {
+        String grade = null;
+        int score = (int)avg()/10;
+        switch (score) {
+            case 10:
+                grade="A 등급입니다.";
+                break;
+            case 9:
+                grade="B 등급입니다.";
+                break;
+            case 8:
+                grade="C 등급입니다.";
+                break;
+            case 7:
+                grade="D 등급입니다.";
+                break;
+            default:
+                grade="F 등급입니다.";
+                break;
+        }
+        return grade;
+    }
 
 }
 
@@ -87,5 +124,13 @@ public class gradeTest {
 
         Score123 s2 = new Score123("이길동", 100, 20, 90);
         s2.printScore();
+
+
+        Grade g1 = new Grade();
+        g1.setName("삼길동");
+        g1.setKuk(80);
+        g1.setEng(80);
+        g1.setMath(80);
+        g1.printScore();
     }
 }
