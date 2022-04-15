@@ -13,5 +13,7 @@ public class StringBufferEx {
         System.out.println(sb.hashCode());
 
         sb.replace(8,9,"your");
+
+
     }
 }
