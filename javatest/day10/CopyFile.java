@@ -1,4 +1,8 @@
-public class CopyFile{ 
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+
+public class CopyFile{
     public static void main(String[] args) { 
         try{ 
              //파라미터를 2개를 받았는지 검사 
@@ -11,14 +15,14 @@ public class CopyFile{
             }         
              
             //파일 객체 생성 
-            File inputFile = new File(args[0]);//소스파일명 
+            File inputFile = new File(args[0]);//소스파일명
             File outputFile = new File(args[1]);//생성될 파일명 
              
             // FileReader는 데이터를 읽어오는 역활을 합니다. 
-            FileReader in = new FileReader(inputFile); 
+            FileReader in = new FileReader(inputFile);
              
             // FileWriter는 쓰는 역활을 합니다. 
-            FileWriter out = new FileWriter(outputFile); 
+            FileWriter out = new FileWriter(outputFile);
          
             int c; 
              
