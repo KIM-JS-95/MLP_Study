@@ -62,7 +62,7 @@ public class TeamDTO {
 
     @Override
     public String toString() {
-        return "TeamDTO{" +
+        return "MemoDTO{" +
                 "name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +

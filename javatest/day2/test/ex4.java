@@ -4,6 +4,7 @@ public class ex4 {
 
     public static void main(String[] args) {
 
+        //String str = new String['a'];
     int grade = 50;
 
     if(90<=grade){

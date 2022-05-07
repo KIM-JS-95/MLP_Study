@@ -1,6 +1,5 @@
-package team;
+package test;
 
-import test.MemoDTO;
 import utility.DBClose;
 import utility.DBOpen;
 
@@ -11,20 +10,22 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TeamDAO {
+public class MemoDAO {
 
     // 여러건 가져오기
-    public List<TeamDTO> list() {
-        List<TeamDTO> list = new ArrayList<>();
+    public List<MemoDTO> list() {
+        List<MemoDTO> list = new ArrayList<>();
+
+        //TODO: 드라이버 로딩 → Connection 형성 → Statement 생성 → ResultSet 생성 → Close 의 단계를 거친다.
 
         Connection con = DBOpen.getCon();
         PreparedStatement preparedStatement = null;
         ResultSet rs = null;
         StringBuffer sql = new StringBuffer();
 
-        sql.append("select no, name, phone, email, skills ");
-        sql.append("from team ");
-        sql.append(" order by name desc");
+        sql.append("select memono, wname, title, content, paawd, viewcnt ");
+        sql.append("from memo ");
+        sql.append(" order by memono desc");
 
         try {
 
@@ -32,11 +33,13 @@ public class TeamDAO {
             rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                TeamDTO dto = new TeamDTO();
-                dto.setName(rs.getString("name"));
-                dto.setEmail(rs.getString("email"));
-                dto.setPhone(rs.getString("phone"));
-                dto.setSkills(rs.getString("skills"));
+                MemoDTO dto = new MemoDTO();
+                dto.setMemono(rs.getInt("memono"));
+                dto.setWname(rs.getString("wname"));
+                dto.setTitle(rs.getString("title"));
+                dto.setContent(rs.getString("content"));
+                dto.setPaawd(rs.getString("paawd"));
+                dto.setViewcnt(rs.getInt("viewcnt"));
 
                 list.add(dto);
             }
@@ -50,16 +53,16 @@ public class TeamDAO {
     }
 
     // 하나의 레코드 읽어오기
-    public TeamDTO read(int no) {
-        TeamDTO dto = null;
+    public MemoDTO read(int no) {
+        MemoDTO dto = null;
 
         Connection con = DBOpen.getCon();
         PreparedStatement preparedStatement = null;
         ResultSet rs = null;
 
         StringBuffer sql = new StringBuffer();
-        sql.append("select * from team");
-        sql.append(" where no = ? ");
+        sql.append("select * from memo");
+        sql.append(" where memono = ? ");
 
         try {
             preparedStatement = con.prepareStatement(sql.toString());
@@ -68,12 +71,13 @@ public class TeamDAO {
             rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                dto = new TeamDTO();
-                dto.setEmail(rs.getString("email"));
-                dto.setAddress(rs.getString("address"));
-                dto.setPhone(rs.getString("phone"));
-                dto.setName(rs.getString("name"));
-                dto.setSkills(rs.getString("skills"));
+                dto = new MemoDTO();
+                dto.setMemono(rs.getInt("memono"));
+                dto.setWname(rs.getString("wname"));
+                dto.setTitle(rs.getString("title"));
+                dto.setContent(rs.getString("content"));
+                dto.setPaawd(rs.getString("paawd"));
+                dto.setViewcnt(rs.getInt("viewcnt"));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -84,23 +88,23 @@ public class TeamDAO {
         return dto;
     }
 
-    public boolean create(TeamDTO dto) {
+    public boolean create(MemoDTO dto) {
         boolean flag = false;
         Connection con = DBOpen.getCon();
         PreparedStatement preparedStatement = null;
 
         StringBuffer sql = new StringBuffer();
-        sql.append("insert into team(name,phone,email,skills,address)");
+        sql.append("insert into memo(wname, title, content, paawd, viewcnt)");
         sql.append("values(?, ?, ?, ?, ?)");
 
 
         try {
             preparedStatement = con.prepareStatement(sql.toString());
-            preparedStatement.setString(1, dto.getName());
-            preparedStatement.setString(2, dto.getPhone());
-            preparedStatement.setString(3, dto.getEmail());
-            preparedStatement.setString(4, dto.getSkills());
-            preparedStatement.setString(5, dto.getAddress());
+            preparedStatement.setString(1, dto.getWname());
+            preparedStatement.setString(2, dto.getTitle());
+            preparedStatement.setString(3, dto.getContent());
+            preparedStatement.setString(4, dto.getPaawd());
+            preparedStatement.setInt(5, dto.getViewcnt());
 
             int cnt = preparedStatement.executeUpdate();
 
@@ -115,23 +119,23 @@ public class TeamDAO {
         return flag;
     }
 
-    public boolean update(TeamDTO dto) {
+    public boolean update(MemoDTO dto) {
         boolean flag = false;
         Connection con = DBOpen.getCon();
         PreparedStatement preparedStatement = null;
 
         StringBuffer sql = new StringBuffer();
-        sql.append("update team ");
-        sql.append("set name = ?, ");
-        sql.append(" address = ? ");
-        sql.append(" where no= ? ");
+        sql.append("update memo ");
+        sql.append("set wname = ?, ");
+        sql.append(" content = ? ");
+        sql.append(" where memono= ? ");
 
 
         try {
             preparedStatement = con.prepareStatement(sql.toString());
-            preparedStatement.setString(1, dto.getName());
-            preparedStatement.setString(2, dto.getAddress());
-            preparedStatement.setInt(3, 3);
+            preparedStatement.setString(1, dto.getWname());
+            preparedStatement.setString(2, dto.getContent());
+            preparedStatement.setInt(3, dto.getMemono());
 
             int cnt = preparedStatement.executeUpdate();
 
@@ -152,7 +156,7 @@ public class TeamDAO {
         PreparedStatement preparedStatement = null;
 
         StringBuffer sql = new StringBuffer();
-        sql.append("delete from team ");
+        sql.append("delete from memo ");
         sql.append("where no = ? ");
 
 
