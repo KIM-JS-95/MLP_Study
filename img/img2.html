@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DOM 갤러리</title>
+<style>
+.container {
+    background: #ECE9D8 ;
+    height: 100vh;
+    display: flex; /*flexbox 선언, 기본 중심축이 행방향*/
+    justify-content :center ; /*item들 중심축에서 가운데 정렬*/
+    
+}
+.mainItem1 {
+    margin: 100px 10px 0 0;
+    width:700px;
+    height:470px;
+    background: aqua;
+}
+.mainItem2 {
+    margin-top: 100px;
+    width:100px;
+    height:450px;
+    background: white;
+    display: flex; /*flexbox선언*/
+    flex-direction: column; /*중심축을 열방향으로 선언*/
+    justify-content:  space-between; /* 앞,뒤 공간없고 중간에만 균등 간격 */
+ 
+}
+ 
+ 
+</style>
+<script type="text/javascript">
+    window.onload = function(){
+        var img1 = document.createElement("img");
+        img1.src ="/images/showImg/01.jpg";
+        img1.width=100;
+        img1.height=90;
+        var show1Div = document.getElementById("show1");
+        show1Div.appendChild(img1);
+ 
+        var img2 = document.createElement("img");
+        img2.src ="/images/showImg/02.jpg";
+        img2.width=100;
+        img2.height=90;
+        var show2Div = document.getElementById("show2");
+        show2Div.appendChild(img2);
+ 
+        var img3 = document.createElement("img");
+        img3.src ="/images/showImg/03.jpg";
+        img3.width=100;
+        img3.height=90;        
+        var show3Div = document.getElementById("show3");
+        show3Div.appendChild(img3);
+ 
+        var img4 = document.createElement("img");
+        img4.src ="/images/showImg/04.jpg";
+        img4.width=100;
+        img4.height=90;
+        var show4Div = document.getElementById("show4");
+        show4Div.appendChild(img4);
+ 
+        var img5 = document.createElement("img");
+        img5.src ="/images/showImg/05.jpg";
+        img5.width=100;
+        img5.height=90;
+        var show5Div = document.getElementById("show5");
+        show5Div.appendChild(img5); 
+    }
+ 
+    function show(div){
+        var temp = div.firstChild;
+        var mainImg = document.createElement("img");
+        mainImg.src = temp.src; // 이미지 경로 전달
+        mainImg.width=700;
+        mainImg.height=470;
+        var showMain = document.getElementById("showMain");
+        showMain.innerHTML="";
+        showMain.appendChild(mainImg); 
+    }
+</script>
+</head>
+<body>
+ 
+<div class='container'>
+    <div class='mainItem1' id='showMain'></div>
+    <div class='mainItem2'>
+        <div class='item item1' id="show1" onclick="show(this)"></div>
+        <div class='item item2' id="show2" onclick="show(this)"></div>
+        <div class='item item3' id="show3" onclick="show(this)"></div>
+        <div class='item item4' id="show4" onclick="show(this)"></div>
+        <div class='item item5' id="show5" onclick="show(this)"></div>
+    </div>
+</div>
+ 
+</body>
+</html>

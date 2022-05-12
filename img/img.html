@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+    
+    function imgShow(){
+        // img 태그 생성
+        var img = document.createElement("img");
+        
+        // img 태그의 src속성 설정
+        img.src ="http://www.apache.org/images/ac2008us_343x114.jpg";
+        
+        // imgPlaceHolder DIV 태그 검색
+        var holder = document.getElementById("imgPlaceHolder");
+        
+        // div 태그에 img 태그 추가
+        holder.appendChild(img);
+    }
+    
+ </script>
+</head>
+<body>
+<input type="button" onclick="imgShow();" value="이미지 표시"/>
+  
+<div id="imgPlaceHolder"></div>
+</body>
+</html>
+ 

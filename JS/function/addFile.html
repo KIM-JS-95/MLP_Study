@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+
+<body>
+
+    <input class="btnAdd" type="button" name="btnAdd" value="파일 선택 추가" />
+    <input class="btnremove" type="button" name="btnremove" value="파일 선택 제거" />
+
+    <br />
+    <DIV id="textHolder">
+
+    </DIV>
+
+    <script>
+        const btnAdd = document.querySelector(".btnAdd");
+        const textHolder = document.getElementById("textHolder");
+        let cnt = 0;
+        btnAdd.addEventListener("click", add);
+
+        function add() {
+
+            let i = textHolder.children.length + 1
+
+            const div = document.createElement("div");
+            div.setAttribute("class", "sector");
+
+            const img = document.createElement("img");
+            img.setAttribute("alt", "🍔");
+            img.setAttribute("style", "height: 60px; width: 50px;");
+            img.setAttribute("id", "user_image");
+
+            const label = document.createElement("label");
+            label.innerText = "파일 선택" + i;
+            
+            const input = document.createElement("input");
+            input.setAttribute("type", "file");
+            input.setAttribute("onchange", "PreviewImage();");
+            input.setAttribute("name", "file");
+            input.setAttribute("id", "user_profile_img");
+
+            div.appendChild(img);
+            div.appendChild(label);
+            div.appendChild(input);
+
+            textHolder.appendChild(div);
+        }
+
+
+        const btnremove = document.querySelector(".btnremove");
+        btnremove.addEventListener("click", remove);
+        function remove() {
+            const child = document.querySelector(".sector");
+            child.remove();
+        }
+    </script>
+
+
+    <script>
+        // 이미지 업로드
+        function PreviewImage() {
+            // 파일리더 생성 
+            var preview = new FileReader();
+            preview.onload = function (e) {
+                // img id 값 
+                document.querySelector("#user_image").src = e.target.result;
+            };
+            // input id 값 
+            preview.readAsDataURL(document.getElementById("user_profile_img").files[0]);
+        };
+    </script>
+
+</body>
+
+</html>
