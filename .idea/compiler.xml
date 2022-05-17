@@ -3,6 +3,7 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
       <module name="JDBC" target="11" />
+      <module name="jsptest" target="16" />
     </bytecodeTargetLevel>
   </component>
 </project>

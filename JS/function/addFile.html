@@ -35,11 +35,12 @@
             img.setAttribute("id", "user_image");
 
             const label = document.createElement("label");
+            label.setAttribute("class", "label");
             label.innerText = "파일 선택" + i;
             
             const input = document.createElement("input");
             input.setAttribute("type", "file");
-            input.setAttribute("onchange", "PreviewImage();");
+            input.setAttribute("onchange", "upload(event)");
             input.setAttribute("name", "file");
             input.setAttribute("id", "user_profile_img");
 
@@ -53,25 +54,25 @@
 
         const btnremove = document.querySelector(".btnremove");
         btnremove.addEventListener("click", remove);
+
         function remove() {
-            const child = document.querySelector(".sector");
-            child.remove();
+            const textHolder = document.getElementById("textHolder");
+            textHolder.lastChild.remove();
         }
     </script>
 
 
     <script>
-        // 이미지 업로드
-        function PreviewImage() {
-            // 파일리더 생성 
+        function upload(event){
+            console.log(event.target.parentElement)
+            let img = event.target.parentElement;
             var preview = new FileReader();
             preview.onload = function (e) {
                 // img id 값 
-                document.querySelector("#user_image").src = e.target.result;
+                img.firstChild.src = e.target.result;
             };
-            // input id 값 
-            preview.readAsDataURL(document.getElementById("user_profile_img").files[0]);
-        };
+            preview.readAsDataURL(img.lastChild.files[0]);
+        }
     </script>
 
 </body>
