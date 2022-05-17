@@ -1,6 +1,4 @@
-package utility;
-
-import utility1.Constant;
+package utility1;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

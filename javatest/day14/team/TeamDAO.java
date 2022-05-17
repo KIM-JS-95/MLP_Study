@@ -1,8 +1,7 @@
 package team;
 
-import test.MemoDTO;
-import utility.DBClose;
-import utility.DBOpen;
+import utility1.DBClose;
+import utility1.DBOpen;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

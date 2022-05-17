@@ -1,11 +1,9 @@
 package test;
 
-import utility.DBClose;
-import utility.DBOpen;
+import utility1.DBClose;
+import utility1.DBOpen;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class DriverTestMySQL {
     public static void main(String args[]){ 

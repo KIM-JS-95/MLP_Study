@@ -1,5 +1,8 @@
 package utility;
 
+import utility1.DBClose;
+import utility1.DBOpen;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +14,7 @@ public class AddressDAO {
     public List<AddressDTO> list() {
         List<AddressDTO> list = new ArrayList<>();
 
-        Connection con = DBOpen.getCon();
+        Connection con = utility1.DBOpen.getCon();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
 
@@ -36,14 +39,14 @@ public class AddressDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
-            DBClose.close(resultSet, preparedStatement, con);
+            utility1.DBClose.close(resultSet, preparedStatement, con);
         }
         return list;
     }
 
     public boolean delete(int addressnum){
         boolean flag = false;
-        Connection con = DBOpen.getCon();
+        Connection con = utility1.DBOpen.getCon();
         PreparedStatement preparedStatement = null;
 
         StringBuffer sql = new StringBuffer();
@@ -61,13 +64,13 @@ public class AddressDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
-            DBClose.close(preparedStatement,con);
+            utility1.DBClose.close(preparedStatement,con);
         }
         return flag;
     }
 
     public AddressDTO read(int i) {
-        Connection con = DBOpen.getCon();
+        Connection con = utility1.DBOpen.getCon();
         PreparedStatement preparedStatement = null;
         AddressDTO dto = null;
         ResultSet rs = null;
@@ -94,7 +97,7 @@ public class AddressDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
-            DBClose.close(preparedStatement, con);
+            utility1.DBClose.close(preparedStatement, con);
         }
 
         return dto;
