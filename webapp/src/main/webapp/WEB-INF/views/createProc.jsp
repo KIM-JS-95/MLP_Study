@@ -1,11 +1,28 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ include file="/ssi/ssi_bbs.jsp" %>
-<jsp:useBean id="dao" class="bbs.BbsDAO" />
-<jsp:useBean id="dto" class="bbs.BbsDTO" />
+<%@ page import="java.util.*, webapp.utility.*" %>
+<jsp:useBean id="dto" class="webapp.bbs.BbsDTO" />
+<jsp:useBean id="dao" class="webapp.bbs.BbsDAO" />
 <jsp:setProperty name="dto" property="*"/>
 <%
-   boolean flag = dao.create(dto);
+     boolean flag = dao.create(dto);
+     if(flag){
 %>
+
+<script>
+	alert("등록되었습니다.");
+</script>
+
+<%
+      }
+      else{
+%>
+<script>
+        alert("등록에 실패입니다.");
+</script>
+<%
+      }
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,18 +30,9 @@
   <meta charset="utf-8">
 </head>
 <body>
-<jsp:include page="/menu/top.jsp"/>
+<jsp:include page="./menu/top.jsp"/>
 <div class="container">
 <div class="well well-lg">
-<%
-   if(flag){
-     out.print("글 등록 성공입니다.");
-   }else{
-     out.print("글 등록 실패입니다.");
-   }
-
-%>
-
 </div>
     <button class="btn"
     onclick="location.href='createForm.jsp'"

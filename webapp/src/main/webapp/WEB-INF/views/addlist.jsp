@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="java.util.*, bbs.BbsDTO, utility.*" %>
-<jsp:useBean id="dao" class="bbs.BbsDAO" />
+<%@ page import="java.util.*, webapp.bbs.BbsDTO, webapp.utility.*" %>
+<jsp:useBean id="dao" class="webapp.bbs.BbsDAO" />
 <%
 
 //검색관련--------------
@@ -44,9 +44,10 @@ String paging = Utility.paging(total, nowPage, recordPerPage, col, word);
   </script>
 </head>
 <body>
-<jsp:include page="/menu/top.jsp"/>
+<jsp:include page="./menu/top.jsp"/>
 <div class="container">
 <h1 class="col-sm-offset-2 col-sm-10">게시판 목록</h1>
+
 <form action="list.jsp" class='form-inline'>
 <div class='form-group'>
  <select class='form-control' name='col'>
@@ -57,12 +58,14 @@ String paging = Utility.paging(total, nowPage, recordPerPage, col, word);
  	<option value="total" <%if(col.equals("total")) out.print("selected");%>>전체출력</option>
  </select>
 </div>
+
 <div class="form-group">
 	<input type='text' class='form-control' placeholder='Enter 검색어' name='word' value="<%=word%>">
 </div>
 <button class='btn btn-default'>검색</button>
 <button class='btn btn-default' type='button' onclick="location.href='createForm.jsp'">등록</button>
 </form>
+
 <table class="table table-striped">
 	<thead>
 		<tr>
@@ -90,11 +93,11 @@ String paging = Utility.paging(total, nowPage, recordPerPage, col, word);
 					for(int j=0; j<dto.getIndent() ; j++){
 						out.print("&nbsp;&nbsp;");
 					}//들여쓰기
-				    if(dto.getIndent() > 0) out.print("<img src='../images/re.jpg'>"); //re이미지
+				    if(dto.getIndent() > 0) out.print("<img src='../resources/images/re.jpg'>"); //re이미지
 				%>
 			<a href="javascript:read('<%=dto.getBbsno() %>')"><%=dto.getTitle() %></a>
 			<% if(Utility.compareDay(dto.getWdate())){ %>
-				<img src="../images/new.gif">
+				<img src="../resources/images/new.gif">
 			<% } %>
 			</td>
 			<td><%=dto.getWname() %></td>
@@ -108,6 +111,7 @@ String paging = Utility.paging(total, nowPage, recordPerPage, col, word);
 %>
 	</tbody>
 </table>
+
 <div>
 	<%=paging %>
 </div>

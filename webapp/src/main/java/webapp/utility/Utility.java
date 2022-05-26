@@ -1,4 +1,4 @@
-package webapp.util;
+package webapp.utility;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -68,7 +68,7 @@ public class Utility {
 	       str.append("<ul class='pagination'> ");
 	       int _nowPage = (nowGrp-1) * pagePerBlock; // 10개 이전 페이지로 이동 
 	       if (nowGrp >= 2){ 
-	         str.append("<li><a href='./list.jsp?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>이전</A></li>"); 
+	         str.append("<li><a href='./addlist.jsp?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>이전</A></li>");
 	       } 
 	 
 	       for(int i=startPage; i<=endPage; i++){ 
@@ -79,13 +79,13 @@ public class Utility {
 	         if (nowPage == i){ 
 	           str.append("<li class='active'><a href=#>"+i+"</a></li>"); 
 	         }else{ 
-	           str.append("<li><a href='./list.jsp?col="+col+"&word="+word+"&nowPage="+i+"'>"+i+"</A></li>");   
+	           str.append("<li><a href='./addlist.jsp?col="+col+"&word="+word+"&nowPage="+i+"'>"+i+"</A></li>");
 	         } 
 	       } 
 	           
 	       _nowPage = (nowGrp * pagePerBlock)+1; // 10개 다음 페이지로 이동 
 	       if (nowGrp < totalGrp){ 
-	         str.append("<li><A href='./list.jsp?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>다음</A></li>"); 
+	         str.append("<li><A href='./addlist.jsp?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>다음</A></li>");
 	       } 
 	       str.append("</ul>"); 
 	       str.append("</div>"); 

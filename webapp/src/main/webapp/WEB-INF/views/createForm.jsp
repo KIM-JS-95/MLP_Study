@@ -57,30 +57,26 @@
 </script>
 </head>
 <body>
-<jsp:include page="/menu/top.jsp"/>
+<jsp:include page="./menu/top.jsp"/>
 <div class="container">
 <h1 class="col-sm-offset-2 col-sm-10">주소등록</h1>
-<form class="form-horizontal"
-      action="createProc.jsp"
-      method="post"
-      >
-
+<form class="form-horizontal" action="/bbs/createProc" method="post">
   <div class="form-group">
-    <label class="control-label col-sm-2" for="name">이름</label>
+    <label class="control-label col-sm-2" for="wname">작성자</label>
     <div class="col-sm-6">
       <input type="text" name="name" id="name" class="form-control">
     </div>
   </div>
 
   <div class="form-group">
-    <label class="control-label col-sm-2" for="handphone">전화번호</label>
+    <label class="control-label col-sm-2" for="title">글제목</label>
     <div class="col-sm-6">
       <input type="text" name="handphone" id="handphone" class="form-control">
     </div>
   </div>
 
    <div class="form-group">
-    <label class="control-label col-sm-2" for="zipcode">우편번호</label>
+    <label class="control-label col-sm-2" for="content">내용</label>
     <div class="col-sm-2">
       	<input type="text" name="zipcode" class="form-control"
       	id="sample6_postcode" placeholder="우편번호" >

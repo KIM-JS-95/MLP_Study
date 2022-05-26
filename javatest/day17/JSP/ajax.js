@@ -1,4 +1,5 @@
 function sendKeyword(params) {
+
      return fetch(new Request('suggest.jsp', {
      method: 'post',
      headers: {
@@ -14,11 +15,13 @@ function select(selectedKeyword) {
 
     hide('suggest');
 }
+
 function show(id){
     if(id) {
         document.getElementById(id).style.display='';
     }
 }
+
 function hide(id){
     if(id) {
         document.getElementById(id).style.display='none';

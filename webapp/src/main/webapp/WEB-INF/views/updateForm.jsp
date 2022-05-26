@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %> 
-<%@ page import="bbs.*" %>
-<jsp:useBean id="dao" class="bbs.BbsDAO" />
+<%@ page import="webapp.bbs.*" %>
+<jsp:useBean id="dao" class="webapp.bbs.BbsDAO" />
 <%  
 	int bbsno = Integer.parseInt(request.getParameter("bbsno"));
 	BbsDTO dto = dao.read(bbsno); 
@@ -13,7 +13,7 @@
   <meta charset="utf-8">
 </head>
 <body> 
-<jsp:include page="/menu/top.jsp"/>
+<jsp:include page="./menu/top.jsp"/>
 <div class="container">
 <h1 class="col-sm-offset-2 col-sm-10">게시판 수정</h1>
 <form class="form-horizontal" 

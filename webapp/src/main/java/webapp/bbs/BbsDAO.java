@@ -1,8 +1,7 @@
 package webapp.bbs;
 
-import webapp.bbs.BbsDTO;
-import webapp.util.DBClose;
-import webapp.util.DBOpen;
+import webapp.utility.DBClose;
+import webapp.utility.DBOpen;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -51,6 +50,7 @@ public class BbsDAO {
 
         return flag;
     }
+
     public boolean update(BbsDTO dto) {
         boolean flag = false;
         Connection con = DBOpen.getConnection();
@@ -85,6 +85,7 @@ public class BbsDAO {
 
         return flag;
     }
+
     public BbsDTO read(int bbsno) {
         BbsDTO dto = null;
         Connection con = DBOpen.getConnection();
@@ -145,6 +146,7 @@ public class BbsDAO {
         }
 
     }
+
     public int total(Map map) { //col,word
         int total = 0;
         Connection con = DBOpen.getConnection();
@@ -188,6 +190,7 @@ public class BbsDAO {
 
         return total;
     }
+
     public List<BbsDTO> list(Map map) {
         List<BbsDTO > list = new ArrayList<BbsDTO>();
         Connection con = DBOpen.getConnection();
@@ -279,5 +282,29 @@ public class BbsDAO {
         }
 
         return flag;
+    }
+
+
+    public  boolean delete(int bbsno){
+        Connection con = DBOpen.getConnection();
+        PreparedStatement pstmt = null;
+
+        StringBuffer sql = new StringBuffer();
+        sql.append(" delete from bbs  ");
+        sql.append(" where bbsno = ? ");
+
+        try {
+            pstmt = con.prepareStatement(sql.toString());
+            pstmt.setInt(1, bbsno);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return false;
+        } finally {
+            DBClose.close(pstmt, con);
+        }
+        return true;
     }
 }

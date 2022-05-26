@@ -1,4 +1,4 @@
-package webapp.util;
+package webapp.utility;
 
 
 import java.sql.Connection;

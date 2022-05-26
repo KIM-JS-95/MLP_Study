@@ -25,9 +25,9 @@
                 let params = `keyword=\${keyword}`;
         
                 if (keyword.length > 0) {
-                    sendKeyword(params)   // 비동기 통신 요청
+                    sendKeyword(params)
                         .then(text => {
-                            //  3|자바001,자바002,자바003
+
                             let result = text.split('|');
 
                             // 갯수, 문자열을 정수로 변환
@@ -43,11 +43,7 @@
                                 html += "등록된 쿼리 목록(선택하세요.)<br>";
 
                                 for (var i = 0; i < keywordList.length; i++) {
-
-                                    //※ 특수 문자 표현: " --> \", \ --> \\
-                                    //※ jsp에서 js의 template literal 사용시 앞에 '\' 사용
                                     html += `<a href=\"javascript:select(\'\${keywordList[i]}\')\">\${keywordList[i]}</a><br>`;
-
                                 }
 
                                 // 목록을 출력할 DIV 태그
@@ -62,14 +58,14 @@
                                 hide('suggest');
                             }
 
-                        }) //then end
+                        })
                         .catch(console.log);
 
-                }//if end
+                }
                 else {
                     hide('suggest');
                 }
-            }//send end
+            }
 
             function frmSend(f) {
                 f.submit();
